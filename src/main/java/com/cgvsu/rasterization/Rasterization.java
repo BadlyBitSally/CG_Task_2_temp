@@ -18,17 +18,14 @@ public class Rasterization {
 
     public static void drawOval(final GraphicsContext graphicsContext, final int centerX, final int centerY, final int width, final int height, final Color color) {
         final PixelWriter pixelWriter = graphicsContext.getPixelWriter();
-        // Полурадиусы эллипса
-        final int a = width / 2;  // горизонтальный радиус
-        final int b = height / 2; // вертикальный радиус
-        // Центр эллипса
+        final int a = width / 2;
+        final int b = height / 2;
         final int cx = centerX;
         final int cy = centerY;
         // Обходим ограничивающий прямоугольник
         for (int y = cy - b; y <= cy + b; y++) {
             for (int x = cx - a; x <= cx + a; x++) {
                 // Проверяем, находится ли точка внутри эллипса
-                // Уравнение эллипса: ((x-cx)/a)^2 + ((y-cy)/b)^2 <= 1
                 double dx = (x - cx) / (double)a;
                 double dy = (y - cy) / (double)b;
 
@@ -39,10 +36,7 @@ public class Rasterization {
         }
     }
 
-    public static void drawOvalBorderUniform(final GraphicsContext graphicsContext,
-                                             final int centerX, final int centerY,
-                                             final int width, final int height,
-                                             final Color color) {
+    public static void drawOvalBorderUniform(final GraphicsContext graphicsContext, final int centerX, final int centerY, final int width, final int height, final Color color) {
         int borderWidth = 1;
         final PixelWriter pixelWriter = graphicsContext.getPixelWriter();
         final int a = width / 2;
